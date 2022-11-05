@@ -1,7 +1,7 @@
 FROM node:16-alpine 
 WORKDIR /app
-COPY package*.json ./
-RUN npm i
+ENV PATH="./node_modules/ .bin:$PATH" 
 COPY . .
+RUN npm run build
 EXPOSE 3000
 CMD ["npm", "start"]
