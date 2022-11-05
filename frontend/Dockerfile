@@ -1,5 +1,5 @@
 
-FROM node:alpine
+FROM node:alpine as builder
 ARG PORT
 
 # Create app directory
@@ -31,21 +31,22 @@ RUN npm run build
 
 CMD [ "npm", "start" ]
 
-FROM nginx:alpine
+# FROM nginx:latest
 
-#!/bin/sh
+# #!/bin/sh
 
-COPY . /etc/nginx/html
+# COPY . /etc/nginx/html
 
-## Remove default nginx index page
-RUN rm -rf /usr/share/nginx/html/*
+# ## Remove default nginx index page
+# RUN rm -rf /usr/share/nginx/html/*
 
-# Copy from the stahg 1
-COPY . /usr/share/nginx/html
+# # Copy from the stahg 1
+# COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 
-EXPOSE 3000 80
+# EXPOSE 3000 80
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+# ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 
 
