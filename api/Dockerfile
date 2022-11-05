@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 FROM python:latest
 
 # App Directory
@@ -29,22 +28,3 @@ EXPOSE 8000
 
 CMD ["python", "manage.py", "runserver"]
 #CMD [ "python", "manage.py", "runserver" "0.0.0.0:8000" ]
-=======
-# Import BaseImage
-FROM python:3.10
-
-RUN virtualenv env
-
-RUN source env/bin/activate
-
-# Install Depemdecies
-
-COPY requirements.txt .
-
-RUN pip install -r requirements.txt
-
-# Run the application:
-
-COPY manage.py .
-CMD ["python", "manage.py"]
->>>>>>> 030accaa06abaa0c1ccaff0c4b91d228d3dd6b1e
