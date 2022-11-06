@@ -1,11 +1,22 @@
-version: '2'
-services:
-  api:
-    build: ./api
-    ports:
-      - "8000:8000"
 
-  web:
-    build: ./frontend
-    ports:
-      - "3000:3000"
+version: "3"
+
+services:
+    frontend:
+        image: obasoro/frontend-react:latest
+        container_name: frontendpage
+        ports:
+          - 3000:3000
+        depends_on:
+          - backend
+
+    backend:
+        image: obasoro/backend-django:latest
+        container_name: backend
+        command: python manage.py runserver 0.0.0.0:8000
+        ports:
+            - "8000:8000"
+networks:
+  default:
+  name:
+  external:
