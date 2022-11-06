@@ -1,17 +1,19 @@
-# Import BaseImage
-FROM python:3.10
+# pull the official base image
+FROM python:3.6-slim
 
-RUN virtualenv env
+# set work directory
+WORKDIR /usr/src/app
 
-RUN source env/bin/activate
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# Install Depemdecies
-
-COPY requirements.txt .
-
+# install dependencies
+RUN pip install --upgrade pip 
+COPY ./requirements.txt /usr/src/app
 RUN pip install -r requirements.txt
 
-# Run the application:
+# copy project
+COPY . /usr/src/app
 
-COPY manage.py .
-CMD ["python", "manage.py"]
+EXPOSE 8000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
