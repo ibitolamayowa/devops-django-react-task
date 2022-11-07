@@ -47,4 +47,34 @@ Create a virtual environment
 ```
 You either do it on the CLI or open a Vscode. I will be using Vscode because of ease and accessibility to CLI also
 
+Building the image
+
+`$ docker build -t obasoro/frontend .`
+
+`$ docker run -it -p port:port image name`
+
+![image](https://user-images.githubusercontent.com/29310552/200222502-d169ad9b-e9b3-4782-83a1-19bc299ce0cb.png)
+
+
+Docker-compose.yml file
+![image](https://user-images.githubusercontent.com/29310552/200222825-47a273c8-b5a5-413d-959f-ae29de69f7c2.png)
+
+
+
+
+
+
+![image](https://user-images.githubusercontent.com/29310552/200222152-8134c863-f59c-48a4-a6bb-1b0e094a97ea.png)
+
+![image](https://user-images.githubusercontent.com/29310552/200222022-eb79812c-92be-4d5e-9da5-f3c6b7ffd4ac.png)
+
+`$ docker-compsose up`
+
+The container image would be spinned up.
+
+![image](https://user-images.githubusercontent.com/29310552/200222232-8d229414-ee23-4c1a-a65b-d2ca9306441e.png)
+
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04)
+
+
 
