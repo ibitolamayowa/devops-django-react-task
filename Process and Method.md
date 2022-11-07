@@ -27,6 +27,7 @@ Push your code to GitHub, it should be in the following format.
 `$ npm start`
 
 ```
+![image](https://user-images.githubusercontent.com/29310552/200212777-d5846165-7b2d-49a5-af7c-a841b678c303.png)
 
 ```
 To test the backend also... Navigate into the folder api
