@@ -40,3 +40,10 @@ Create a virtual environment
 `$ pip install -r requirement`
 
 `$ python manage.py runserver`
+
+## Create a Dockerfile
+
+```
+You either do it on the CLI or open a Vscode. I will be using Vscode because of ease and accessibility to CLI also
+
+
