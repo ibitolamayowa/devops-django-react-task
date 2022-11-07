@@ -27,3 +27,16 @@ Push your code to GitHub, it should be in the following format.
 `$ npm start`
 
 ```
+
+```
+To test the backend also... Navigate into the folder api
+
+Create a virtual environment
+
+`$ python3 -m venv env`
+
+`$ source env/bin/activate`
+
+`$ pip install -r requirement`
+
+`$ python manage.py runserver`
