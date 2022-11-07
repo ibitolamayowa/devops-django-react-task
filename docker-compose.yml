@@ -3,16 +3,14 @@ version: "3"
 
 services:
     frontend:
-        image: obasoro/frontend-react:latest
-        container_name: frontendpage
+        image: obasoro/frontend-react-new:latest
         ports:
           - 3000:3000
         depends_on:
           - backend
 
     backend:
-        image: obasoro/backend-django:latest
-        container_name: backend
+        image: obasoro/api:latest
         command: python manage.py runserver 0.0.0.0:8000
         ports:
             - "8000:8000"
