@@ -1,0 +1,27 @@
+# Import BaseImage
+FROM node:alpine
+
+# Creating an application directory
+RUN mkdir -p /app
+
+# The  application working directory
+
+WORKDIR /app
+
+# Copy the app from local to the Image
+
+COPY package*.json .
+
+# Install node packages
+
+RUN npm install 
+
+# Copy directory our docker image
+
+COPY . .
+
+# Build the app
+
+RUN  npm run build
+
+CMD ["npm", "start"]
