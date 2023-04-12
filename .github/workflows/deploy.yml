@@ -18,9 +18,11 @@ jobs:
       uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
+        
+    - name: testing scripts
+      run: |
           pwd
-          # git clone -b main git@github.com:Chinasaram/devops-django-react-task.git
+          git clone -b main git@github.com:Chinasaram/devops-django-react-task.git
           whoami
       
 #     - name: executing remote ssh commands using ssh key
