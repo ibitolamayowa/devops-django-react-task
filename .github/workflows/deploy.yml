@@ -34,5 +34,6 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           pwd
-          # git clone -b main git@github.com:Chinasaram/devops-django-react-task.git
+          git clone -b main git@github.com:Chinasaram/devops-django-react-task.git
+          ls
           whoami
