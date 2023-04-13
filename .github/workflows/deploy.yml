@@ -14,25 +14,25 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v3
       
-    - name: executing remote ssh commands using ssh key
-      uses: webfactory/ssh-agent@v0.7.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-        
-    - name: testing scripts
-      run: |
-          pwd
-          ls
-          git clone -b main git@github.com:Chinasaram/devops-django-react-task.git
-          whoami
-      
 #     - name: executing remote ssh commands using ssh key
-#       uses: appleboy/ssh-action@master
+#       uses: webfactory/ssh-agent@v0.7.0
 #       with:
-#         host: ${{ secrets.SSH_HOST }} 
-#         username: ${{ secrets.SSH_USERNAME }}
-#         key: ${{ secrets.SSH_KEY }}
-#         script: |
+#         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        
+#     - name: testing scripts
+#       run: |
 #           pwd
-#           # git clone -b main git@github.com:Chinasaram/devops-django-react-task.git
+#           ls
+#           git clone -b main git@github.com:Chinasaram/devops-django-react-task.git
 #           whoami
+      
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }} 
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          pwd
+          # git clone -b main git@github.com:Chinasaram/devops-django-react-task.git
+          whoami
