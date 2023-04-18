@@ -29,7 +29,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: django-react
-        IMAGE_TAG: ${{ `git log -1 --pretty=%h` }} # this uses the shortened commit hash as a tag
+        IMAGE_TAG: latest # this uses the shortened commit hash as a tag
 
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
