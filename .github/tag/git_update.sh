@@ -64,3 +64,5 @@ fi
 echo ::set-output name=git-tag::$NEW_TAG
 
 exit 0
+
+# One thing I got from this is to never use double quotes when dealing with bash conditionals
