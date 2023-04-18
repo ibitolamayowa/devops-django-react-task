@@ -14,9 +14,9 @@ done
 git fetch --prune --unshallow 2>/dev/null
 CURRENT_VERSION=`git describe --abbrev=0 --tags 2>/dev/null`
 
-if [ $CURRENT_VERSION == "" ]
+if [[ $CURRENT_VERSION == '' ]]
 then
-  CURRENT_VERSION="v1.0.0"
+  CURRENT_VERSION='v1.0.0'
 fi
 
 echo "Current version: $CURRENT_VERSION"
