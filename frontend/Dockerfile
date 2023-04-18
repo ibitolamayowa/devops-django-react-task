@@ -1,7 +1,15 @@
-FROM node:16-alpine 
+FROM node:alpine
+LABEL author="nasa"
+
+# set working direction
 WORKDIR /app
-ENV PATH="./node_modules/ .bin:$PATH" 
-COPY . .
-RUN npm run build
-EXPOSE 3000
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+# install application dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm i
+# add app
+COPY . ./
+# start app 
 CMD ["npm", "start"]
