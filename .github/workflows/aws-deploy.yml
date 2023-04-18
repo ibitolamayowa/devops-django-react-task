@@ -3,6 +3,9 @@ name: deploy-to-eb
 on:
   push:
     branches: [ main ]
+
+  tags:
+      - 'v*'
     
 
 jobs:
@@ -25,11 +28,23 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        # images: |
+        #   name/app
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+
     - name: Build, tag, and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: django-react
-        IMAGE_TAG: latest # this uses the shortened commit hash as a tag
+        IMAGE_TAG: ${{ steps.meta.outputs.tags }} # this uses the shortened commit hash as a tag
 
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./frontend
