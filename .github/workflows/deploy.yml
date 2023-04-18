@@ -3,7 +3,7 @@ name: Deploy to Ec2 Server via ssh
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main]
+    branches: [develop]
     
 jobs:    
   deploy:
@@ -22,5 +22,6 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           pwd
-          # git clone -b main git@github.com:Chinasaram/devops-django-react-task.git
+          # git clone -b main git@github.com:<github-account>/<github repo>
+          # git clone
           whoami
