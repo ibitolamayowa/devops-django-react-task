@@ -20,9 +20,8 @@ jobs:
       
     - name: trouble-shoot
       run: |
-        echo ${{ github.head_ref }}
+        echo ${{ github.head_ref }} # branch that triggered the build
         echo ${{ github.base_ref }}
-        echo ${{ github.ref_name }}
       
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
@@ -34,7 +33,7 @@ jobs:
           pwd
           echo ${{ github.head_ref }}
           echo ${{ github.base_ref }}
-          ech0 ${{ github.ref_name }}
+          echo ${{ github.ref_name }}
           git clone -b ${{ github.head_ref }} git@github.com:Chinasaram/devops-django-react-task.git
-          cd devops-django-react
-          pwd
+          cd devops-django-react-task
+          ls -la
