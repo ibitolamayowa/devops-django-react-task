@@ -8,6 +8,8 @@ on:
       - opened
       - reopened
       - synchronize
+env:
+  git_branch: ${{ github.ref.replace('refs/heads/', '') }}
 
 jobs:    
   deploy:
@@ -28,6 +30,6 @@ jobs:
         script: |
           pwd
           echo $git_branch
-          git clone -b ${{ github.ref_name }} git@github.com:Chinasaram/devops-django-react-task.git
+          git clone -b ${{ env.github_branch }} git@github.com:Chinasaram/devops-django-react-task.git
           cd devops-django-react
           pwd
