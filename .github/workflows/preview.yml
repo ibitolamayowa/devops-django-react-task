@@ -8,6 +8,8 @@ on:
       - opened
       - reopened
       - synchronize
+env:
+  git_branch: ${{ github.ref_name }}
 
 jobs:    
   deploy:
@@ -17,8 +19,6 @@ jobs:
     steps:
     - name: checkout repo
       uses: actions/checkout@v3
-      env:
-        git_branch: $(basename ${{ github.head_ref }})
 
       
     - name: executing remote ssh commands using ssh key
@@ -30,6 +30,6 @@ jobs:
         script: |
           pwd
           echo $git_branch
-          git clone -b $git_branch git@github.com:Chinasaram/devops-django-react-task.git
+          git clone -b ${{ env.git_branch }} git@github.com:Chinasaram/devops-django-react-task.git
           cd devops-django-react
           pwd
