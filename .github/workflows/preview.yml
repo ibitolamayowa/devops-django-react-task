@@ -1,0 +1,35 @@
+name: Deploy PR previews
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:    
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v3
+      env:
+        git_branch: $(basename ${{ github.head_ref }})
+
+      
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }} 
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          pwd
+          echo $git_branch
+          git clone -b $git_branch git@github.com:Chinasaram/devops-django-react-task.git
+          cd devops-django-react
+          pwd
