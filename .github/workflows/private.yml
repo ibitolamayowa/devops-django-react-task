@@ -14,40 +14,40 @@ jobs:
     if: github.event.action == 'closed' && github.event.pull_request.merged == true
     
     steps:
-      - name: SSH into private server via bastion host
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SECRET_IP }}
-          username: ubuntu
-          key: ${{ secrets.SSH_PRI_KEY }}
-          bastion_host: ec2-44-211-224-166.compute-1.amazonaws.com
-          bastion_user: ubuntu
-          agent: yes
-          script: |
-            # Commands to execute on the private server
-            echo "Connected to the private server via the bastion host."
-            echo "Running commands on the private server..."
-            echo "Current directory:"
-            pwd
-            echo "List files:"
-            ls -l
+#       - name: SSH into private server via bastion host
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ secrets.SECRET_IP }}
+#           username: ubuntu
+#           key: ${{ secrets.SSH_PRI_KEY }}
+#           bastion_host: ec2-44-211-224-166.compute-1.amazonaws.com
+#           bastion_user: ubuntu
+#           agent: yes
+#           script: |
+#             # Commands to execute on the private server
+#             echo "Connected to the private server via the bastion host."
+#             echo "Running commands on the private server..."
+#             echo "Current directory:"
+#             pwd
+#             echo "List files:"
+#             ls -l
 
 
-#     - name: Install SSH client
-#       run: sudo apt-get install openssh-client -y
+    - name: Install SSH client
+      run: sudo apt-get install openssh-client -y
       
-#     - name: executing remote ssh to bastion host
-#       env:
-#         MY_SECRET: ${{secrets.SSH_PRI_KEY}}
-#       shell: bash
-#       run: |
-#         pwd
-#         echo "$MY_SECRET" >> ssh_key.pem && chmod 600 ssh_key.pem
-#         ls
-#         eval `ssh-agent -s`
-#         ssh-add ssh_key.pem
-#         ssh -A ubuntu@ec2-44-211-224-166.compute-1.amazonaws.com
-#         ls /var/www/
-#         ssh ubuntu@${{ secrets.SECRET_IP }}
-#         ls /var/www/
-#         echo "connected!"
+    - name: executing remote ssh to bastion host
+      env:
+        MY_SECRET: ${{secrets.SSH_PRI_KEY}}
+      shell: bash
+      run: |
+        pwd
+        echo "$MY_SECRET" >> ssh_key.pem && chmod 600 ssh_key.pem
+        ls
+        eval `ssh-agent -s`
+        ssh-add ssh_key.pem
+        ssh -AT ubuntu@ec2-44-211-224-166.compute-1.amazonaws.com
+        ls /var/www/
+        ssh ubuntu@${{ secrets.SECRET_IP }}
+        ls /var/www/
+        echo "connected!"
