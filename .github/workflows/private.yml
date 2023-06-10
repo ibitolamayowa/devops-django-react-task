@@ -21,7 +21,7 @@ jobs:
       run: sudo apt-get install openssh-client -y
       
     - name: Add SSH private key
-      run: echo ${{ secrets.SSH_PRI_KEY }} > ssh_key.pem && chmod 600 ssh_key.pem
+      run: echo $SSH_PRI_KEY > ssh_key.pem && chmod 600 ssh_key.pem
       
     - name: executing remote ssh to bastion host
       shell: bash
