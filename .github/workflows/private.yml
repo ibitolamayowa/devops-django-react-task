@@ -46,8 +46,6 @@ jobs:
         ls
         eval `ssh-agent -s`
         ssh-add ssh_key.pem
-        ssh -AT ubuntu@ec2-44-211-224-166.compute-1.amazonaws.com
-        ls /var/www/
-        ssh ubuntu@${{ secrets.SECRET_IP }}
+        ssh -t -J ubuntu@ec2-44-211-224-166.compute-1.amazonaws.com -o "StrictHostKeyChecking=no" ubuntu@${{ secrets.SECRET_IP }}        
         ls /var/www/
         echo "connected!"
