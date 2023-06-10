@@ -20,12 +20,14 @@ jobs:
     - name: Install SSH client
       run: sudo apt-get install openssh-client -y
       
-    - name: Add SSH private key
-      run: echo $SSH_PRI_KEY > ssh_key.pem && chmod 600 ssh_key.pem
-      
     - name: executing remote ssh to bastion host
+      env:
+        MY_SECRET: ${{secrets.SSH_PRI_KEY}}
       shell: bash
       run: |
+        pwd
+        echo "$MY_SECRET" >> ssh_key.pem && chmod 600 ssh_key.pem
+        ls
         eval `ssh-agent -s`
         ssh-add ssh_key.pem
         ssh -J ubuntu@ec2-44-211-224-166.compute-1.amazonaws.com ubuntu@${{ secrets.SECRET_IP }}
