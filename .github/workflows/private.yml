@@ -14,9 +14,6 @@ jobs:
     if: github.event.action == 'closed' && github.event.pull_request.merged == true
     
     steps:
-    - name: checkout repo
-      uses: actions/checkout@v3
-
     - name: Install SSH client
       run: sudo apt-get install openssh-client -y
       
@@ -30,5 +27,8 @@ jobs:
         ls
         eval `ssh-agent -s`
         ssh-add ssh_key.pem
-        ssh -J ubuntu@ec2-44-211-224-166.compute-1.amazonaws.com -o "StrictHostKeyChecking=no" ubuntu@${{ secrets.SECRET_IP }}
+        ssh -A ubuntu@ec2-44-211-224-166.compute-1.amazonaws.com
+        ls /var/www/
+        ssh ubuntu@${{ secrets.SECRET_IP }}
+        ls /var/www/
         echo "connected!"
